@@ -6,10 +6,14 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using System.Web.OData.Extensions;
-using System.Web.OData.Routing;
-using System.Web.OData.Routing.Conventions;
-using System.Web.OData.Routing.Template;
+//using System.Web.OData.Extensions;
+//using System.Web.OData.Routing;
+//using System.Web.OData.Routing.Conventions;
+//using System.Web.OData.Routing.Template;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Routing;
+using Microsoft.AspNet.OData.Routing.Conventions;
+using Microsoft.AspNet.OData.Routing.Template;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Swashbuckle.OData.Descriptions
@@ -33,13 +37,15 @@ namespace Swashbuckle.OData.Descriptions
             var routingConventions = rootContainer.GetServices<IODataRoutingConvention>();
             var attributeRoutingConvention = routingConventions.OfType<AttributeRoutingConvention>().SingleOrDefault();
 
-            if (attributeRoutingConvention != null)
-            {
-                return attributeRoutingConvention
-                    .GetInstanceField<IDictionary<ODataPathTemplate, HttpActionDescriptor>>("_attributeMappings", true)
-                    .Select(pair => GetODataActionDescriptorFromAttributeRoute(pair.Value, oDataRoute, httpConfig))
-                    .Where(descriptor => descriptor != null);
-            }
+            // GM: commented out due to cast error
+            //if (attributeRoutingConvention != null)
+            //{
+            //    return attributeRoutingConvention
+            //         //.GetInstanceField<IDictionary<ODataPathTemplate, HttpActionDescriptor>>("_attributeMappings", true)
+            //         .GetInstanceField<IDictionary<ODataPathTemplate, HttpActionDescriptor>>("_attributeMappings", true)
+            //        .Select(pair => GetODataActionDescriptorFromAttributeRoute(pair.Value, oDataRoute, httpConfig))
+            //        .Where(descriptor => descriptor != null);
+            //}
 
             return new List<ODataActionDescriptor>();
         }
