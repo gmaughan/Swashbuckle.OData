@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Net.Http;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

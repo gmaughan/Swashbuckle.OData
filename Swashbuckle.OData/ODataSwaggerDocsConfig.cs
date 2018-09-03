@@ -4,9 +4,9 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Swashbuckle.Application;
+using Swagger.Net.Application;
 using Swashbuckle.OData.Descriptions;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 using System.Xml.XPath;
 using System.Web.Http.Dispatcher;
 using System.Web.OData;
@@ -120,10 +120,63 @@ namespace Swashbuckle.OData
                 GetODataDocumentFilters(),
                 _swaggerDocsConfig.GetFieldValue<Func<IEnumerable<ApiDescription>, ApiDescription>>("_conflictingActionsResolver"),
                 _swaggerDocsConfig.GetFieldValue<bool>("_applyFiltersToAllSchemas"),
-                _swaggerDocsConfig.GetFieldValue<IEnumerable<Func<XPathDocument>>>("_xmlDocFactories").Select(factory=>factory).ToList()
+                _swaggerDocsConfig.GetFieldValue<IEnumerable<Func<XPathDocument>>>("_xmlDocFactories").Select(factory => factory).ToList()
             );
 
             return new SwashbuckleOptions(swaggerProviderOptions);
+        }
+
+        internal SwaggerGeneratorOptions GetSwaggerGeneratorOptions()
+        {
+            AddGlobalDocumentFilters();
+            AddODataDocumentFilters();
+
+            //var swaggerProviderOptions = new SwaggerProviderOptions(
+            //    _swaggerDocsConfig.GetFieldValue<Func<ApiDescription, string, bool>>("_versionSupportResolver"),
+            //    _swaggerDocsConfig.GetFieldValue<IEnumerable<string>>("_schemes"),
+            //    _swaggerDocsConfig.GetSecurityDefinitions(),
+            //    _swaggerDocsConfig.GetFieldValue<bool>("_ignoreObsoleteActions"),
+            //    _swaggerDocsConfig.GetFieldValue<Func<ApiDescription, string>>("_groupingKeySelector"),
+            //    _swaggerDocsConfig.GetFieldValue<IComparer<string>>("_groupingKeyComparer"),
+            //    GetODataCustomSchemaMappings(),
+            //    _swaggerDocsConfig.GetFieldValue<IEnumerable<Func<ISchemaFilter>>>("_schemaFilters", true).Select(factory => factory()),
+            //    _swaggerDocsConfig.GetFieldValue<IList<Func<IModelFilter>>>("_modelFilters", true).Select(factory => factory()).ToList(),
+            //    _swaggerDocsConfig.GetFieldValue<bool>("_ignoreObsoleteProperties"),
+            //    _swaggerDocsConfig.GetFieldValue<Func<Type, string>>("_schemaIdSelector"),
+            //    _swaggerDocsConfig.GetFieldValue<bool>("_describeAllEnumsAsStrings"),
+            //    _swaggerDocsConfig.GetFieldValue<bool>("_describeStringEnumsInCamelCase"),
+            //    GetODataOperationFilters(),
+            //    GetODataDocumentFilters(),
+            //    _swaggerDocsConfig.GetFieldValue<Func<IEnumerable<ApiDescription>, ApiDescription>>("_conflictingActionsResolver"),
+            //    _swaggerDocsConfig.GetFieldValue<bool>("_applyFiltersToAllSchemas"),
+            //    _swaggerDocsConfig.GetFieldValue<IEnumerable<Func<XPathDocument>>>("_xmlDocFactories").Select(factory => factory).ToList()
+            //);
+
+            return new SwaggerGeneratorOptions(
+                _swaggerDocsConfig.GetFieldValue<Func<ApiDescription, string, bool>>("_versionSupportResolver"),
+                _swaggerDocsConfig.GetFieldValue<IEnumerable<string>>("_schemes"),
+                _swaggerDocsConfig.GetSecurityDefinitions(),
+                _swaggerDocsConfig.GetFieldValue<bool>("_ignoreObsoleteActions"),
+                null,
+                _swaggerDocsConfig.GetFieldValue<Func<ApiDescription, string>>("_groupingKeySelector"),
+                _swaggerDocsConfig.GetFieldValue<IComparer<string>>("_groupingKeyComparer"),
+                GetODataCustomSchemaMappings(),
+                _swaggerDocsConfig.GetFieldValue<IEnumerable<Func<ISchemaFilter>>>("_schemaFilters", true).Select(factory => factory()),
+                _swaggerDocsConfig.GetFieldValue<IList<Func<IModelFilter>>>("_modelFilters", true).Select(factory => factory()).ToList(),
+                _swaggerDocsConfig.GetFieldValue<bool>("_ignoreObsoleteProperties"),
+                _swaggerDocsConfig.GetFieldValue<Func<Type, string>>("_schemaIdSelector"),
+                _swaggerDocsConfig.GetFieldValue<bool>("_describeAllEnumsAsStrings"),
+                _swaggerDocsConfig.GetFieldValue<bool>("_describeStringEnumsInCamelCase"),
+                false,
+                false,
+                false,
+                GetODataOperationFilters(),
+                GetODataDocumentFilters(),
+                _swaggerDocsConfig.GetFieldValue<Func<IEnumerable<ApiDescription>, ApiDescription>>("_conflictingActionsResolver")
+                );
+            //_swaggerDocsConfig.GetFieldValue<bool>("_applyFiltersToAllSchemas"),
+            //_swaggerDocsConfig.GetFieldValue<IEnumerable<Func<XPathDocument>>>("_xmlDocFactories").Select(factory => factory).ToList());
+
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Description;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 using System.Xml.XPath;
 
 namespace Swashbuckle.OData

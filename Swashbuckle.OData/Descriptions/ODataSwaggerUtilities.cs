@@ -13,7 +13,7 @@ using Microsoft.AspNet.OData.Routing;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

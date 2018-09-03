@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Web.Http.Description;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData
 {

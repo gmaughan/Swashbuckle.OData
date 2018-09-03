@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Web.Http.Description;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 using System.Xml.XPath;
-using Swashbuckle.Swagger.XmlComments;
+using Swagger.Net.XmlComments;
 
 namespace Swashbuckle.OData
 {

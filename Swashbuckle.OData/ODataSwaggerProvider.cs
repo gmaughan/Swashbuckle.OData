@@ -7,9 +7,9 @@ using System.Web.Http.Description;
 //using System.Web.OData.Routing;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.OData.Edm;
-using Swashbuckle.Application;
+using Swagger.Net.Application;
 using Swashbuckle.OData.Descriptions;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 using System.Collections.Concurrent;
 
 namespace Swashbuckle.OData
@@ -59,18 +59,22 @@ namespace Swashbuckle.OData
 
         private SwaggerDocument GenerateSwagger(string rootUrl, string apiVersion)
         {
-            var swashbuckleOptions = _config.GetSwashbuckleOptions();
+            var swaggerGeneratorOptions = _config.GetSwaggerGeneratorOptions();
+
+            //var schemaRegistry = new SchemaRegistry(
+            //    _config.Configuration.SerializerSettingsOrDefault(),
+            //    swashbuckleOptions.CustomSchemaMappings,
+            //    swashbuckleOptions.SchemaFilters,
+            //    swashbuckleOptions.ModelFilters,
+            //    swashbuckleOptions.IgnoreObsoleteProperties,
+            //    swashbuckleOptions.SchemaIdSelector,
+            //    swashbuckleOptions.DescribeAllEnumsAsStrings,
+            //    swashbuckleOptions.DescribeStringEnumsInCamelCase,
+            //    swashbuckleOptions.ApplyFiltersToAllSchemas);
 
             var schemaRegistry = new SchemaRegistry(
                 _config.Configuration.SerializerSettingsOrDefault(),
-                swashbuckleOptions.CustomSchemaMappings,
-                swashbuckleOptions.SchemaFilters,
-                swashbuckleOptions.ModelFilters,
-                swashbuckleOptions.IgnoreObsoleteProperties,
-                swashbuckleOptions.SchemaIdSelector,
-                swashbuckleOptions.DescribeAllEnumsAsStrings,
-                swashbuckleOptions.DescribeStringEnumsInCamelCase,
-                swashbuckleOptions.ApplyFiltersToAllSchemas);
+                swaggerGeneratorOptions);
 
             Info info;
             _config.GetApiVersions().TryGetValue(apiVersion, out info);
@@ -78,8 +82,8 @@ namespace Swashbuckle.OData
                 throw new UnknownApiVersion(apiVersion);
 
             var paths = GetApiDescriptionsFor(apiVersion)
-                .Where(apiDesc => !(swashbuckleOptions.IgnoreObsoleteActions && apiDesc.IsObsolete()))
-                .OrderBy(swashbuckleOptions.GroupingKeySelector, swashbuckleOptions.GroupingKeyComparer)
+                .Where(apiDesc => !(swaggerGeneratorOptions.IgnoreObsoleteActions && apiDesc.IsObsolete()))
+                .OrderBy(swaggerGeneratorOptions.GroupingKeySelector, swaggerGeneratorOptions.GroupingKeyComparer)
                 .GroupBy(apiDesc => apiDesc.RelativePathSansQueryString())
                 .ToDictionary(group => "/" + group.Key, group => CreatePathItem(@group, schemaRegistry));
 
@@ -91,13 +95,13 @@ namespace Swashbuckle.OData
                 info = info,
                 host = rootUri.Host + port,
                 basePath = rootUri.AbsolutePath != "/" ? rootUri.AbsolutePath : null,
-                schemes = swashbuckleOptions.Schemes?.ToList() ?? new[] { rootUri.Scheme }.ToList(),
+                schemes = swaggerGeneratorOptions.Schemes?.ToList() ?? new[] { rootUri.Scheme }.ToList(),
                 paths = paths,
                 definitions = schemaRegistry.Definitions,
-                securityDefinitions = swashbuckleOptions.SecurityDefinitions
+                securityDefinitions = swaggerGeneratorOptions.SecurityDefinitions
             };
 
-            foreach(var filter in swashbuckleOptions.DocumentFilters)
+            foreach(var filter in swaggerGeneratorOptions.DocumentFilters)
             {
                 Contract.Assume(filter != null);
 

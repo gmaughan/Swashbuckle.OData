@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web.Http.Controllers;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

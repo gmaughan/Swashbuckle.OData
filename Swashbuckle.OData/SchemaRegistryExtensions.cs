@@ -12,7 +12,7 @@ using System.Web.OData.Formatter;
 using Microsoft.AspNet.OData;
 using Microsoft.OData.Edm;
 using Swashbuckle.OData.Descriptions;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData
 {

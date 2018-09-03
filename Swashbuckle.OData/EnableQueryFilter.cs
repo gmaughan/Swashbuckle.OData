@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web.Http.Description;
 using System.Web.OData;
 using Swashbuckle.OData.Descriptions;
-using Swashbuckle.Swagger;
+using Swagger.Net;
+using Swagger.Net.Annotations;
 using System;
 using Microsoft.AspNet.OData;
 
@@ -49,7 +50,7 @@ namespace Swashbuckle.OData
             Type returnType = httpActionDescriptor.ReturnType;
 
             //Look if it has set a response type in the attributes
-            var swgResponseTypeAttr = httpActionDescriptor.GetCustomAttributes<Swagger.Annotations.SwaggerResponseAttribute>()?.FirstOrDefault();
+            var swgResponseTypeAttr = httpActionDescriptor.GetCustomAttributes<SwaggerResponseAttribute>()?.FirstOrDefault();
             if (swgResponseTypeAttr != null)
                 returnType = swgResponseTypeAttr.Type;
             else

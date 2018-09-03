@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
+using Swagger.Net.Annotations;
 
 namespace Swashbuckle.OData.Descriptions
 {
@@ -12,7 +13,7 @@ namespace Swashbuckle.OData.Descriptions
         {
             Contract.Requires(actionDescriptor != null);
                         
-            var responseType = actionDescriptor.GetCustomAttributes<Swagger.Annotations.SwaggerResponseAttribute>()?
+            var responseType = actionDescriptor.GetCustomAttributes<SwaggerResponseAttribute>()?
                 .Select(attribute => attribute.Type).FirstOrDefault();
             if (responseType == null)            
                 responseType = actionDescriptor.GetCustomAttributes<ResponseTypeAttribute>()?

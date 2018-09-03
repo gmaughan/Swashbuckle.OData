@@ -2,7 +2,7 @@
 using System.Web;
 //using System.Web.OData.Routing;
 using Microsoft.AspNet.OData.Routing;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

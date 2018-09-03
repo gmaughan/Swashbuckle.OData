@@ -1,6 +1,6 @@
 using System.Diagnostics.Contracts;
 using System.Web.Http.Controllers;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

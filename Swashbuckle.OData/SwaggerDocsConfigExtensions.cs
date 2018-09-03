@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using Swashbuckle.Application;
-using Swashbuckle.Swagger;
+using Swagger.Net.Application;
+using Swagger.Net;
 
 namespace Swashbuckle.OData
 {

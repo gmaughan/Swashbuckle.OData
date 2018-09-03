@@ -1,7 +1,7 @@
 using System.Diagnostics.Contracts;
 using System.Web.OData.Formatter;
 using Microsoft.OData.Edm;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData.Descriptions
 {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Swashbuckle.Swagger;
+using Swagger.Net;
 
 namespace Swashbuckle.OData
 {
