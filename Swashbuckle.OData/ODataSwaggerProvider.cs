@@ -61,17 +61,6 @@ namespace Swashbuckle.OData
         {
             var swaggerGeneratorOptions = _config.GetSwaggerGeneratorOptions();
 
-            //var schemaRegistry = new SchemaRegistry(
-            //    _config.Configuration.SerializerSettingsOrDefault(),
-            //    swashbuckleOptions.CustomSchemaMappings,
-            //    swashbuckleOptions.SchemaFilters,
-            //    swashbuckleOptions.ModelFilters,
-            //    swashbuckleOptions.IgnoreObsoleteProperties,
-            //    swashbuckleOptions.SchemaIdSelector,
-            //    swashbuckleOptions.DescribeAllEnumsAsStrings,
-            //    swashbuckleOptions.DescribeStringEnumsInCamelCase,
-            //    swashbuckleOptions.ApplyFiltersToAllSchemas);
-
             var schemaRegistry = new SchemaRegistry(
                 _config.Configuration.SerializerSettingsOrDefault(),
                 swaggerGeneratorOptions);

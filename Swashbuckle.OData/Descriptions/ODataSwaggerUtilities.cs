@@ -138,8 +138,10 @@ namespace Swashbuckle.OData.Descriptions
 
         public static IList<Parameter> AddQueryOptionParametersForEntitySet(IList<Parameter> parameterList)
         {
+            // GM: commented out $expand. We don't support it yet
+
             return parameterList
-                .Parameter("$expand", "query", "Expands related entities inline.", "string", false)
+             //   .Parameter("$expand", "query", "Expands related entities inline.", "string", false)
                 .Parameter("$filter", "query", "Filters the results, based on a Boolean condition.", "string", false)
                 .Parameter("$select", "query", "Selects which properties to include in the response.", "string", false)
                 .Parameter("$orderby", "query", "Sorts the results.", "string", false)
@@ -150,8 +152,10 @@ namespace Swashbuckle.OData.Descriptions
 
         public static IList<Parameter> AddQueryOptionParametersForEntity(IList<Parameter> parameterList)
         {
+            // GM: commented out $expand. We don't support it yet
+
             return parameterList
-                .Parameter("$expand", "query", "Expands related entities inline.", "string", false)
+              //  .Parameter("$expand", "query", "Expands related entities inline.", "string", false)
                 .Parameter("$select", "query", "Selects which properties to include in the response.", "string", false);
         }
 

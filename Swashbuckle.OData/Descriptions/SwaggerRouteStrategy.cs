@@ -50,7 +50,7 @@ namespace Swashbuckle.OData.Descriptions
 
             var oDataActionDescriptors = new List<ODataActionDescriptor>();
 
-            // GM: Commented out to only probe for GET descriptors
+            // GM: Commented out to only probe for certain methods
 
             //oDataActionDescriptors.AddIfNotNull(GetActionDescriptors(new HttpMethod("DELETE"), potentialSwaggerRoute.PathItem.delete, potentialSwaggerRoute, httpConfig));
             oDataActionDescriptors.AddIfNotNull(GetActionDescriptors(new HttpMethod("GET"), potentialSwaggerRoute.PathItem.get, potentialSwaggerRoute, httpConfig));
