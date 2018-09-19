@@ -1,0 +1,3 @@
+[submodule "Swagger-Net"]
+	path = Swagger-Net
+	url = https://github.com/gmaughan/Swagger-Net.git
